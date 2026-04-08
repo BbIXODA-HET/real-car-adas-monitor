@@ -1,41 +1,61 @@
 #include <iostream>
+#include <iomanip>
 #include "obd_parser.h"
+#include "onnx_classifier.h"
 
 int main() {
     OBDParser parser;
-
-    // Пытаемся загрузить сгенерированный датасет
-    int loaded = parser.load("data/obd_data.csv");
-
-    if (loaded == -1) {
-        std::cerr << "Failed to load CSV file. Check data/obd_data.csv path." << std::endl;
+    if (parser.load("data/obd_data.csv") == -1) {
+        std::cerr << "Failed to load CSV file." << std::endl;
         return 1;
     }
 
-    std::cout << "Successfully loaded " << loaded << " records.\n\n";
-    std::cout << "--- First 5 records ---\n";
+    try {
+        // Загружаем нейросеть
+        ONNXClassifier classifier("models/driver_classifier.onnx", "models/normalization_params.json");
 
-    // Массив для подсчета статистики классов: 0-SLOW, 1-NORMAL, 2-AGGRESSIVE
-    int stats[3] = { 0, 0, 0 };
+        int correct_predictions = 0;
+        int total_test = 20;
 
-    // Проходимся по всем загруженным записям
-    for (int i = 0; i < loaded; ++i) {
-        OBDRecord rec = parser.getRecord(i);
-        stats[rec.label]++; // Увеличиваем счетчик для соответствующего класса вождения
+        std::cout << "--- Testing First 20 Records ---\n";
+        std::cout << std::left << std::setw(10) << "True"
+            << std::setw(12) << "Predicted"
+            << "Confidence\n";
+        std::cout << "--------------------------------------\n";
 
-        // Выводим в консоль только первые 5 записей
-        if (i < 5) {
-            std::cout << "Speed: " << rec.speed_kmh
-                << " km/h, RPM: " << rec.engine_rpm
-                << ", Label: " << rec.label << "\n";
+        for (int i = 0; i < total_test; ++i) {
+            OBDRecord rec = parser.getRecord(i);
+
+            // Превращаем структуру в массив для классификатора
+            std::array<float, 6> features = {
+                rec.speed_kmh, rec.engine_rpm, rec.throttle_pos,
+                rec.coolant_temp, rec.fuel_level, rec.intake_air_temp
+            };
+
+            // Классифицируем
+            ClassificationResult result = classifier.classify(features);
+
+            // Считаем правильные
+            if (result.label == rec.label) {
+                correct_predictions++;
+            }
+
+            // Выводим таблицу
+            std::cout << std::left << std::setw(10) << rec.label
+                << std::setw(12) << result.label
+                << std::fixed << std::setprecision(2) << (result.confidence * 100.0f) << "%\n";
         }
-    }
 
-    // Выводим итоговую статистику
-    std::cout << "\n--- Statistics ---\n";
-    std::cout << "SLOW: " << stats[0] << "\n";
-    std::cout << "NORMAL: " << stats[1] << "\n";
-    std::cout << "AGGRESSIVE: " << stats[2] << "\n";
+        // Подсчитываем точность
+        float accuracy = (float)correct_predictions / total_test * 100.0f;
+        std::cout << "--------------------------------------\n";
+        std::cout << "Accuracy on first 20 records: " << accuracy << "%\n";
+
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
+    }
 
     return 0;
 }
