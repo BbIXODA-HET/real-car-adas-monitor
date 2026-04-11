@@ -1,28 +1,37 @@
 #include <opencv2/opencv.hpp>
-#include "dashboard.h"
+#include "dms_monitor.h"
+#include "dms_hud.h"
 
 int main() {
-    // Создаем пустой черный кадр размером 1280x480
-    cv::Mat frame = cv::Mat::zeros(480, 1280, CV_8UC3);
+    cv::VideoCapture cap(0, cv::CAP_DSHOW);
+    if (!cap.isOpened()) {
+        std::cerr << "Cannot open camera" << std::endl;
+        return -1;
+    }
 
-    // Подготавливаем тестовые данные (чтобы сработали оба предупреждения и агрессивный стиль)
-    DashboardData data;
-    data.speed = 110.5f;        // Красная зона спидометра
-    data.rpm = 5000.0f;         // Красная зона тахометра
-    data.coolant_temp = 105.0f; // >100 - выдаст WARNING
-    data.fuel_level = 10.0f;    // <15 - выдаст WARNING
-    data.throttle_pos = 85.0f;
-    data.driving_style = 2;     // AGGRESSIVE
+    // Загружаем модели
+    DMSMonitor monitor("models/deploy.prototxt", "models/res10_300x300_ssd_iter_140000.caffemodel", "models/haarcascade_eye.xml");
+    DMSHUD hud;
 
-    // Рисуем панель
-    Dashboard dashboard;
-    dashboard.draw(frame, data);
+    cv::Mat display_frame = cv::Mat::zeros(480, 1280, CV_8UC3);
+    std::cout << "Press 'Q' to quit." << std::endl;
 
-    // Показываем окно
-    cv::imshow("ADAS Dashboard Test", frame);
+    while (true) {
+        cv::Mat cam_frame;
+        cap >> cam_frame;
+        if (cam_frame.empty()) break;
 
-    // Ждем нажатия любой клавиши, чтобы закрыть окно
-    cv::waitKey(0);
+        cv::flip(cam_frame, cam_frame, 1); // Зеркальное отражение
+        DriverState state = monitor.analyze(cam_frame);
 
+        display_frame.setTo(cv::Scalar(0, 0, 0)); // Очистка кадра
+        hud.draw(display_frame, cam_frame, state);
+
+        cv::imshow("DMS Test", display_frame);
+
+        if (cv::waitKey(30) == 'q' || cv::waitKey(30) == 'Q') {
+            break;
+        }
+    }
     return 0;
 }
