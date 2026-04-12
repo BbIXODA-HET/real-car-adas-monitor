@@ -1,0 +1,77 @@
+\doxysection{ONNXClassifier Class Reference}
+\hypertarget{class_o_n_n_x_classifier}{}\label{class_o_n_n_x_classifier}\index{ONNXClassifier@{ONNXClassifier}}
+
+
+Класс для загрузки ONNX модели и классификации данных телеметрии.  
+
+
+
+
+{\ttfamily \+\#include $<$onnx\+\_\+classifier.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_o_n_n_x_classifier_a6b5fd500b42df3c87822dd39586881cc}{ONNXClassifier}} (const std::\+string \&model\+\_\+path, const std::\+string \&json\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Конструктор, загружающий ONNX модель и параметры нормализации. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} \doxymbox{\hyperlink{class_o_n_n_x_classifier_aa89793b17b53400840137b6788b6b3cd}{classify}} (const std::\+array$<$ float, 6 $>$ \&features)
+\begin{DoxyCompactList}\small\item\em Классифицирует один набор признаков телеметрии. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс для загрузки ONNX модели и классификации данных телеметрии. 
+
+\label{doc-constructors}
+\Hypertarget{class_o_n_n_x_classifier_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_o_n_n_x_classifier_a6b5fd500b42df3c87822dd39586881cc}\index{ONNXClassifier@{ONNXClassifier}!ONNXClassifier@{ONNXClassifier}}
+\index{ONNXClassifier@{ONNXClassifier}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{ONNXClassifier()}{ONNXClassifier()}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_a6b5fd500b42df3c87822dd39586881cc} 
+ONNXClassifier::\+\+ONNXClassifier (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{model\+\_\+path}{, }\item[{const std::\+string \&}]{json\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Конструктор, загружающий ONNX модель и параметры нормализации. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em model\+\_\+path} & Путь к файлу .onnx. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em json\+\_\+path} & Путь к файлу .json с параметрами. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+runtime\+\_\+error} & Если не удалось загрузить модель или JSON. \\
+\hline
+\end{DoxyExceptions}
+
+
+\label{doc-func-members}
+\Hypertarget{class_o_n_n_x_classifier_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_o_n_n_x_classifier_aa89793b17b53400840137b6788b6b3cd}\index{ONNXClassifier@{ONNXClassifier}!classify@{classify}}
+\index{classify@{classify}!ONNXClassifier@{ONNXClassifier}}
+\doxysubsubsection{\texorpdfstring{classify()}{classify()}}
+{\footnotesize\ttfamily \label{class_o_n_n_x_classifier_aa89793b17b53400840137b6788b6b3cd} 
+\doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} ONNXClassifier::\+classify (\begin{DoxyParamCaption}\item[{const std::\+array$<$ float, 6 $>$ \&}]{features}{}\end{DoxyParamCaption})}
+
+
+
+Классифицирует один набор признаков телеметрии. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em features} & Массив из 6 float-\/значений (скорость, обороты и т.\+д.). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Структура \doxylink{struct_classification_result}{Classification\+Result} с предсказанным классом и уверенностью. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+onnx\+\_\+classifier.\+h\item 
+src/\+onnx\+\_\+classifier.\+cpp\end{DoxyCompactItemize}

@@ -3,7 +3,10 @@
 #include <vector>
 #include <stdexcept> // Для исключений (out_of_range, invalid_argument)
 
-// Структура, хранящая одну строку из CSV
+/**
+ * @struct OBDRecord
+ * @brief Хранит одну запись телеметрии автомобиля (одна строка из CSV).
+ */
 struct OBDRecord {
     float speed_kmh;
     float engine_rpm;
@@ -14,16 +17,32 @@ struct OBDRecord {
     int label; // Стиль вождения переведен в число: 0 - SLOW, 1 - NORMAL, 2 - AGGRESSIVE
 };
 
+/**
+ * @class OBDParser
+ * @brief Отвечает за чтение и парсинг CSV файлов с данными телеметрии.
+ */
 class OBDParser {
 public:
-    // Метод загрузки данных из CSV. Возвращает количество загруженных строк или -1 при ошибке
+    /**
+     * @brief Загружает данные из CSV файла.
+     * @param[in] filepath Путь к CSV файлу.
+     * @return Количество успешно загруженных записей или -1 в случае ошибки.
+     */
     int load(const std::string& filepath);
-
-    // Получение записи по индексу. Бросает исключение, если индекс неверный
+    
+    /**
+     * @brief Возвращает запись телеметрии по указанному индексу.
+     * @param[in] index Индекс запрашиваемой записи.
+     * @return Структура OBDRecord с данными.
+     * @throw std::out_of_range Если индекс находится вне допустимого диапазона.
+     */
     OBDRecord getRecord(int index) const;
 
-    // Публичный статический метод для конвертации строки "SLOW" в число 0. 
-    // Сделан публичным, чтобы его легко было протестировать отдельно
+    /**
+     * @brief Конвертирует текстовую метку стиля вождения в число.
+     * @param[in] labelStr Текстовая метка ("SLOW", "NORMAL", "AGGRESSIVE").
+     * @return Целое число (0, 1, 2) или -1, если метка неизвестна.
+     */
     static int parseLabel(const std::string& labelStr);
 
 private:

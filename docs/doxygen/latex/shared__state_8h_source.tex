@@ -1,0 +1,25 @@
+\doxysection{shared\+\_\+state.\+h}
+\hypertarget{shared__state_8h_source}{}\label{shared__state_8h_source}\index{src/shared\_state.h@{src/shared\_state.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}obd\_parser.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}onnx\_classifier.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_shared_state}{SharedState}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ std::mutex\ mtx;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Мьютекс\ для\ защиты\ данных}}
+\DoxyCodeLine{00016\ \ \ \ \ std::atomic<bool>\ running\{\ \textcolor{keyword}{true}\ \};\ \textcolor{comment}{//\ Флаг\ работы\ программы}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ Текущие\ данные\ для\ отрисовки}}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}}\ current\_obd;}
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{struct_classification_result}{ClassificationResult}}\ drive\_style;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Счетчики\ для\ финальной\ статистики}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ alert\_drowsy\_count\ =\ 0;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ alert\_distracted\_count\ =\ 0;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ alert\_aggressive\_count\ =\ 0;}
+\DoxyCodeLine{00026\ \};}
+
+\end{DoxyCode}

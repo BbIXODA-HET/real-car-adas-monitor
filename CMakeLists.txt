@@ -25,5 +25,5 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(RunTests tests/test_obd_parser.cpp src/obd_parser.cpp)
-target_link_libraries(RunTests GTest::gtest_main)
+add_executable(RunTests tests/test_obd_parser.cpp src/obd_parser.cpp src/dms_monitor.cpp)
+target_link_libraries(RunTests GTest::gtest_main ${OpenCV_LIBS})

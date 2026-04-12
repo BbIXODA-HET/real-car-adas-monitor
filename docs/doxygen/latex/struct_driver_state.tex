@@ -1,0 +1,46 @@
+\doxysection{Driver\+State Struct Reference}
+\hypertarget{struct_driver_state}{}\label{struct_driver_state}\index{DriverState@{DriverState}}
+
+
+Содержит полную информацию о текущем состоянии водителя.  
+
+
+
+
+{\ttfamily \+\#include $<$dms\+\_\+monitor.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_driver_state_a095560e36e2ba9fe6454b3a8f9312468}\label{struct_driver_state_a095560e36e2ba9fe6454b3a8f9312468} 
+bool {\bfseries face\+\_\+detected} = false
+\item 
+\Hypertarget{struct_driver_state_add9c2f78ab746099c2d6096f01786f73}\label{struct_driver_state_add9c2f78ab746099c2d6096f01786f73} 
+bool {\bfseries eyes\+\_\+open} = true
+\item 
+\Hypertarget{struct_driver_state_a7d3753689aa9c044d2544c60ba0e46d0}\label{struct_driver_state_a7d3753689aa9c044d2544c60ba0e46d0} 
+bool {\bfseries looking\+\_\+forward} = true
+\item 
+\Hypertarget{struct_driver_state_a1b132ec09f0c4f6e7a9a3d0235262c51}\label{struct_driver_state_a1b132ec09f0c4f6e7a9a3d0235262c51} 
+float {\bfseries eye\+\_\+openness} = 1.\+0f
+\item 
+\Hypertarget{struct_driver_state_a5f6d1cf6a60d43aec7291a8293e3c6b3}\label{struct_driver_state_a5f6d1cf6a60d43aec7291a8293e3c6b3} 
+float {\bfseries head\+\_\+turn\+\_\+deg} = 0.\+0f
+\item 
+\Hypertarget{struct_driver_state_a0a4fba11c920ef2a63da7335ddba718c}\label{struct_driver_state_a0a4fba11c920ef2a63da7335ddba718c} 
+bool {\bfseries alert\+\_\+drowsy} = false
+\item 
+\Hypertarget{struct_driver_state_ae89099f22525d9644381727b5d018bc6}\label{struct_driver_state_ae89099f22525d9644381727b5d018bc6} 
+bool {\bfseries alert\+\_\+distracted} = false
+\item 
+\Hypertarget{struct_driver_state_a139c9d9b635410f2cd60720b9bb2b239}\label{struct_driver_state_a139c9d9b635410f2cd60720b9bb2b239} 
+cv::\+\+Rect {\bfseries face\+\_\+rect}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Содержит полную информацию о текущем состоянии водителя. 
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+dms\+\_\+monitor.\+h\end{DoxyCompactItemize}

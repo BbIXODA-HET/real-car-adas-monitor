@@ -1,0 +1,45 @@
+\doxysection{Shared\+State Struct Reference}
+\hypertarget{struct_shared_state}{}\label{struct_shared_state}\index{SharedState@{SharedState}}
+
+
+Структура для потокобезопасного обмена данными.  
+
+
+
+
+{\ttfamily \+\#include $<$shared\+\_\+state.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_shared_state_a5cae91298dde2facf1e9a3a5acaf808c}\label{struct_shared_state_a5cae91298dde2facf1e9a3a5acaf808c} 
+std::\+mutex {\bfseries mtx}
+\item 
+\Hypertarget{struct_shared_state_a4b35795e7152b4a932bdd6a3090840f0}\label{struct_shared_state_a4b35795e7152b4a932bdd6a3090840f0} 
+std::\+atomic$<$ bool $>$ {\bfseries running} \{ true \}
+\item 
+\Hypertarget{struct_shared_state_afb204e08db2a4ee0548b44444e4bd43c}\label{struct_shared_state_afb204e08db2a4ee0548b44444e4bd43c} 
+\doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}} {\bfseries current\+\_\+obd}
+\item 
+\Hypertarget{struct_shared_state_aa05285df465f0a65b953194fceb733e7}\label{struct_shared_state_aa05285df465f0a65b953194fceb733e7} 
+\doxymbox{\hyperlink{struct_classification_result}{Classification\+Result}} {\bfseries drive\+\_\+style}
+\item 
+\Hypertarget{struct_shared_state_adb9bf44b501205f0aa1cfa0bbc127d02}\label{struct_shared_state_adb9bf44b501205f0aa1cfa0bbc127d02} 
+int {\bfseries alert\+\_\+drowsy\+\_\+count} = 0
+\item 
+\Hypertarget{struct_shared_state_a1eb54bf9c5ae321d4f23b45f412d7bd3}\label{struct_shared_state_a1eb54bf9c5ae321d4f23b45f412d7bd3} 
+int {\bfseries alert\+\_\+distracted\+\_\+count} = 0
+\item 
+\Hypertarget{struct_shared_state_a49d4319596595650c43095c57d0d86a2}\label{struct_shared_state_a49d4319596595650c43095c57d0d86a2} 
+int {\bfseries alert\+\_\+aggressive\+\_\+count} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Структура для потокобезопасного обмена данными. 
+
+Используется для передачи данных телеметрии (OBD) в главный поток (UI/\+Камера) с использованием мьютекса для предотвращения состояния гонки (race condition). 
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+src/\+shared\+\_\+state.\+h\end{DoxyCompactItemize}

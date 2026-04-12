@@ -1,0 +1,37 @@
+\doxysection{dms\+\_\+monitor.\+h}
+\hypertarget{dms__monitor_8h_source}{}\label{dms__monitor_8h_source}\index{src/dms\_monitor.h@{src/dms\_monitor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <opencv2/opencv.hpp>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <opencv2/dnn.hpp>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_driver_state}{DriverState}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{bool}\ face\_detected\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{bool}\ eyes\_open\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{bool}\ looking\_forward\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ eye\_openness\ =\ 1.0f;\ \textcolor{comment}{//\ 0.0\ -\/\ закрыты,\ 1.0\ -\/\ открыты}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{float}\ head\_turn\_deg\ =\ 0.0f;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ alert\_drowsy\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ alert\_distracted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00018\ \ \ \ \ cv::Rect\ face\_rect;}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_d_m_s_monitor_ad1be38e9a1820275b58a453f45607404}{DMSMonitor}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \doxymbox{\hyperlink{class_d_m_s_monitor_ad1be38e9a1820275b58a453f45607404}{DMSMonitor}}(\textcolor{keyword}{const}\ std::string\&\ face\_prototxt,\ \textcolor{keyword}{const}\ std::string\&\ face\_caffe,\ \textcolor{keyword}{const}\ std::string\&\ eye\_cascade);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \ \ \doxymbox{\hyperlink{struct_driver_state}{DriverState}}\ \doxymbox{\hyperlink{class_d_m_s_monitor_ae86abf879fa9977685c90ff2e67d487c}{analyze}}(\textcolor{keyword}{const}\ cv::Mat\&\ frame);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00047\ \ \ \ \ cv::Rect\ detectFace(\textcolor{keyword}{const}\ cv::Mat\&\ frame);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ estimateEyeOpenness(\textcolor{keyword}{const}\ cv::Mat\&\ frame,\ \textcolor{keyword}{const}\ cv::Rect\&\ face\_rect,\ \doxymbox{\hyperlink{struct_driver_state}{DriverState}}\&\ state);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ estimateHeadTurn(\textcolor{keyword}{const}\ cv::Mat\&\ frame,\ \textcolor{keyword}{const}\ cv::Rect\&\ face\_rect,\ \doxymbox{\hyperlink{struct_driver_state}{DriverState}}\&\ state);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ cv::dnn::Net\ face\_net;}
+\DoxyCodeLine{00052\ \ \ \ \ cv::CascadeClassifier\ eye\_cascade;}
+\DoxyCodeLine{00053\ \ \ \ \ std::deque<bool>\ eyes\_history;\ \textcolor{comment}{//\ Хранит\ последние\ 15\ кадров}}
+\DoxyCodeLine{00054\ \};}
+
+\end{DoxyCode}

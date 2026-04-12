@@ -1,0 +1,47 @@
+\doxysection{Dashboard Class Reference}
+\hypertarget{class_dashboard}{}\label{class_dashboard}\index{Dashboard@{Dashboard}}
+
+
+Класс для отрисовки графической приборной панели с помощью Open\+CV.  
+
+
+
+
+{\ttfamily \+\#include $<$dashboard.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_dashboard_a59c496572e9c13686fcef47d858c85ad}{draw}} (cv::\+\+Mat \&frame, const \doxymbox{\hyperlink{struct_dashboard_data}{Dashboard\+Data}} \&data)
+\begin{DoxyCompactList}\small\item\em Рисует всю приборную панель на левой половине кадра. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс для отрисовки графической приборной панели с помощью Open\+CV. 
+
+\label{doc-func-members}
+\Hypertarget{class_dashboard_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_dashboard_a59c496572e9c13686fcef47d858c85ad}\index{Dashboard@{Dashboard}!draw@{draw}}
+\index{draw@{draw}!Dashboard@{Dashboard}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_dashboard_a59c496572e9c13686fcef47d858c85ad} 
+void Dashboard::\+draw (\begin{DoxyParamCaption}\item[{cv::\+\+Mat \&}]{frame}{, }\item[{const \doxymbox{\hyperlink{struct_dashboard_data}{Dashboard\+Data}} \&}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Рисует всю приборную панель на левой половине кадра. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em frame} & Кадр Open\+CV, на котором будет производиться отрисовка. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em data} & Структура с текущими значениями телеметрии. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+dashboard.\+h\item 
+src/\+dashboard.\+cpp\end{DoxyCompactItemize}

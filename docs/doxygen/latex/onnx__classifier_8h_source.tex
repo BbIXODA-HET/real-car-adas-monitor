@@ -1,0 +1,39 @@
+\doxysection{onnx\+\_\+classifier.\+h}
+\hypertarget{onnx__classifier_8h_source}{}\label{onnx__classifier_8h_source}\index{src/onnx\_classifier.h@{src/onnx\_classifier.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <onnxruntime\_cxx\_api.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_classification_result}{ClassificationResult}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ label;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Предсказанный\ класс\ (0,\ 1,\ 2)}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ confidence;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Уверенность\ (от\ 0.0\ до\ 1.0)}}
+\DoxyCodeLine{00014\ \ \ \ \ std::array<float,\ 3>\ scores;\textcolor{comment}{//\ Вероятности\ всех\ трех\ классов}}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_o_n_n_x_classifier_a6b5fd500b42df3c87822dd39586881cc}{ONNXClassifier}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00030\ \ \ \ \ \doxymbox{\hyperlink{class_o_n_n_x_classifier_a6b5fd500b42df3c87822dd39586881cc}{ONNXClassifier}}(\textcolor{keyword}{const}\ std::string\&\ model\_path,\ \textcolor{keyword}{const}\ std::string\&\ json\_path);}
+\DoxyCodeLine{00031\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \doxymbox{\hyperlink{struct_classification_result}{ClassificationResult}}\ \doxymbox{\hyperlink{class_o_n_n_x_classifier_aa89793b17b53400840137b6788b6b3cd}{classify}}(\textcolor{keyword}{const}\ std::array<float,\ 6>\&\ features);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Вспомогательные\ методы\ для\ чтения\ JSON\ (без\ сторонних\ библиотек)}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ loadNormalizationParams(\textcolor{keyword}{const}\ std::string\&\ json\_path);}
+\DoxyCodeLine{00042\ \ \ \ \ std::vector<float>\ parseJsonArray(\textcolor{keyword}{const}\ std::string\&\ json\_str,\ \textcolor{keyword}{const}\ std::string\&\ key);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Классы\ ONNX\ Runtime}}
+\DoxyCodeLine{00045\ \ \ \ \ Ort::Env\ env;}
+\DoxyCodeLine{00046\ \ \ \ \ Ort::Session\ session\{\ \textcolor{keyword}{nullptr}\ \};}
+\DoxyCodeLine{00047\ \ \ \ \ Ort::MemoryInfo\ memory\_info;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Параметры\ нормализации}}
+\DoxyCodeLine{00050\ \ \ \ \ std::vector<float>\ mean;}
+\DoxyCodeLine{00051\ \ \ \ \ std::vector<float>\ std\_dev;}
+\DoxyCodeLine{00052\ \};}
+
+\end{DoxyCode}

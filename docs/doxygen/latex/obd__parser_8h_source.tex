@@ -1,0 +1,33 @@
+\doxysection{obd\+\_\+parser.\+h}
+\hypertarget{obd__parser_8h_source}{}\label{obd__parser_8h_source}\index{src/obd\_parser.h@{src/obd\_parser.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdexcept>}\ \textcolor{comment}{//\ Для\ исключений\ (out\_of\_range,\ invalid\_argument)}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{float}\ speed\_kmh;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ engine\_rpm;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ throttle\_pos;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ coolant\_temp;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{float}\ fuel\_level;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{float}\ intake\_air\_temp;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ label;\ \textcolor{comment}{//\ Стиль\ вождения\ переведен\ в\ число:\ 0\ -\/\ SLOW,\ 1\ -\/\ NORMAL,\ 2\ -\/\ AGGRESSIVE}}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_o_b_d_parser}{OBDParser}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_o_b_d_parser_a1d5673b9d423d22363352d1fb82b0dab}{load}}(\textcolor{keyword}{const}\ std::string\&\ filepath);}
+\DoxyCodeLine{00032\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}}\ \doxymbox{\hyperlink{class_o_b_d_parser_a108ace9ceb1fe2dde22f3bd70b85bccd}{getRecord}}(\textcolor{keywordtype}{int}\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_o_b_d_parser_aef1d8b9beef2b6f47f7358182252d428}{parseLabel}}(\textcolor{keyword}{const}\ std::string\&\ labelStr);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ Вектор\ для\ хранения\ всех\ прочитанных\ записей}}
+\DoxyCodeLine{00050\ \ \ \ \ std::vector<OBDRecord>\ records;}
+\DoxyCodeLine{00051\ \};}
+
+\end{DoxyCode}

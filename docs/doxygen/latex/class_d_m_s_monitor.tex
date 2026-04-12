@@ -1,0 +1,81 @@
+\doxysection{DMSMonitor Class Reference}
+\hypertarget{class_d_m_s_monitor}{}\label{class_d_m_s_monitor}\index{DMSMonitor@{DMSMonitor}}
+
+
+Модуль системы мониторинга водителя (Driver Monitoring System).  
+
+
+
+
+{\ttfamily \+\#include $<$dms\+\_\+monitor.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_d_m_s_monitor_ad1be38e9a1820275b58a453f45607404}{DMSMonitor}} (const std::\+string \&face\+\_\+prototxt, const std::\+string \&face\+\_\+caffe, const std::\+string \&eye\+\_\+cascade)
+\begin{DoxyCompactList}\small\item\em Конструктор, загружающий DNN-\/модель для лица и каскад для глаз. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_driver_state}{Driver\+State}} \doxymbox{\hyperlink{class_d_m_s_monitor_ae86abf879fa9977685c90ff2e67d487c}{analyze}} (const cv::\+\+Mat \&frame)
+\begin{DoxyCompactList}\small\item\em Анализирует один кадр с камеры и возвращает состояние водителя. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Модуль системы мониторинга водителя (Driver Monitoring System). 
+
+Класс отвечает за распознавание лица и глаз водителя на видеопотоке, а также за вычисление уровня усталости и степени отвлечения от дороги. 
+
+\label{doc-constructors}
+\Hypertarget{class_d_m_s_monitor_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_d_m_s_monitor_ad1be38e9a1820275b58a453f45607404}\index{DMSMonitor@{DMSMonitor}!DMSMonitor@{DMSMonitor}}
+\index{DMSMonitor@{DMSMonitor}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{DMSMonitor()}{DMSMonitor()}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_ad1be38e9a1820275b58a453f45607404} 
+DMSMonitor::\+\+DMSMonitor (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{face\+\_\+prototxt}{, }\item[{const std::\+string \&}]{face\+\_\+caffe}{, }\item[{const std::\+string \&}]{eye\+\_\+cascade}{}\end{DoxyParamCaption})}
+
+
+
+Конструктор, загружающий DNN-\/модель для лица и каскад для глаз. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em face\+\_\+prototxt} & Путь к .prototxt файлу. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em face\+\_\+caffe} & Путь к .caffemodel файлу. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em eye\+\_\+cascade} & Путь к .xml файлу каскада глаз. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+runtime\+\_\+error} & Если не удалось загрузить одну из моделей. \\
+\hline
+\end{DoxyExceptions}
+
+
+\label{doc-func-members}
+\Hypertarget{class_d_m_s_monitor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_d_m_s_monitor_ae86abf879fa9977685c90ff2e67d487c}\index{DMSMonitor@{DMSMonitor}!analyze@{analyze}}
+\index{analyze@{analyze}!DMSMonitor@{DMSMonitor}}
+\doxysubsubsection{\texorpdfstring{analyze()}{analyze()}}
+{\footnotesize\ttfamily \label{class_d_m_s_monitor_ae86abf879fa9977685c90ff2e67d487c} 
+\doxymbox{\hyperlink{struct_driver_state}{Driver\+State}} DMSMonitor::\+analyze (\begin{DoxyParamCaption}\item[{const cv::\+\+Mat \&}]{frame}{}\end{DoxyParamCaption})}
+
+
+
+Анализирует один кадр с камеры и возвращает состояние водителя. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em frame} & Кадр с веб-\/камеры. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Структура \doxylink{struct_driver_state}{Driver\+State} с результатами анализа. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+dms\+\_\+monitor.\+h\item 
+src/\+dms\+\_\+monitor.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,49 @@
+\doxysection{DMSHUD Class Reference}
+\hypertarget{class_d_m_s_h_u_d}{}\label{class_d_m_s_h_u_d}\index{DMSHUD@{DMSHUD}}
+
+
+Класс для отрисовки интерфейса (HUD) системы мониторинга водителя.  
+
+
+
+
+{\ttfamily \+\#include $<$dms\+\_\+hud.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_d_m_s_h_u_d_a78c426d68a72dbb41ad98f3f2343ac57}{draw}} (cv::\+\+Mat \&display\+\_\+frame, const cv::\+\+Mat \&camera\+\_\+frame, const \doxymbox{\hyperlink{struct_driver_state}{Driver\+State}} \&state)
+\begin{DoxyCompactList}\small\item\em Вставляет изображение с камеры и рисует поверх него рамки, алерты и индикаторы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Класс для отрисовки интерфейса (HUD) системы мониторинга водителя. 
+
+\label{doc-func-members}
+\Hypertarget{class_d_m_s_h_u_d_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_d_m_s_h_u_d_a78c426d68a72dbb41ad98f3f2343ac57}\index{DMSHUD@{DMSHUD}!draw@{draw}}
+\index{draw@{draw}!DMSHUD@{DMSHUD}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_d_m_s_h_u_d_a78c426d68a72dbb41ad98f3f2343ac57} 
+void DMSHUD::\+draw (\begin{DoxyParamCaption}\item[{cv::\+\+Mat \&}]{display\+\_\+frame}{, }\item[{const cv::\+\+Mat \&}]{camera\+\_\+frame}{, }\item[{const \doxymbox{\hyperlink{struct_driver_state}{Driver\+State}} \&}]{state}{}\end{DoxyParamCaption})}
+
+
+
+Вставляет изображение с камеры и рисует поверх него рамки, алерты и индикаторы. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em display\+\_\+frame} & Финальный кадр для отображения (1280x480). \\
+\hline
+\doxymbox{\texttt{in}}  & {\em camera\+\_\+frame} & Оригинальный кадр с веб-\/камеры. \\
+\hline
+\doxymbox{\texttt{in}}  & {\em state} & Текущее состояние водителя от \doxylink{class_d_m_s_monitor}{DMSMonitor}. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+dms\+\_\+hud.\+h\item 
+src/\+dms\+\_\+hud.\+cpp\end{DoxyCompactItemize}

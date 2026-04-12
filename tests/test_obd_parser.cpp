@@ -1,6 +1,8 @@
+#include <opencv2/opencv.hpp>
 #include <gtest/gtest.h>
 #include "../src/obd_parser.h"
 #include <fstream>
+#include "../src/dms_monitor.h"
 
 // 1. Тест: проверяем правильность конвертации текста в числа
 TEST(OBDParserTest, LabelConversion) {
@@ -53,4 +55,23 @@ TEST(OBDParserTest, ParseIncorrectRowIsSkipped) {
     EXPECT_EQ(parser.getRecord(0).label, 2);
 
     std::remove("temp_incorrect.csv");
+}
+
+// 6. Тест DMS: По умолчанию модуль не загружен (вызовет исключение при плохих путях)
+TEST(DMSMonitorTest, ConstructorThrowsOnInvalidPaths) {
+    EXPECT_ANY_THROW(DMSMonitor("bad.prototxt", "bad.caffemodel", "bad.xml"));
+}
+
+// 7. Тест DMS: analyze() на пустом кадре не падает, возвращает face_detected = false
+TEST(DMSMonitorTest, AnalyzeEmptyFrameReturnsFalse) {
+    // Используем правильные пути (они должны лежать в ../models относительно папки запуска)
+    DMSMonitor dms("../models/deploy.prototxt", "../models/res10_300x300_ssd_iter_140000.caffemodel", "../models/haarcascade_eye.xml");
+    cv::Mat empty_frame;
+    DriverState state = dms.analyze(empty_frame);
+    EXPECT_FALSE(state.face_detected);
+}
+
+// 8. Тест DMS: Загрузка моделей (если файлы есть - не падает)
+TEST(DMSMonitorTest, ModelsLoadSuccessfully) {
+    EXPECT_NO_THROW(DMSMonitor("../models/deploy.prototxt", "../models/res10_300x300_ssd_iter_140000.caffemodel", "../models/haarcascade_eye.xml"));
 }

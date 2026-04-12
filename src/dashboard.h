@@ -2,7 +2,10 @@
 #include <opencv2/opencv.hpp>
 #include <string>
 
-// —труктура дл€ передачи данных на приборную панель
+/**
+ * @struct DashboardData
+ * @brief —труктура дл€ передачи всех необходимых данных на приборную панель.
+ */
 struct DashboardData {
     float speed;
     float rpm;
@@ -12,9 +15,17 @@ struct DashboardData {
     int driving_style; // 0-SLOW, 1-NORMAL, 2-AGGRESSIVE
 };
 
+/**
+ * @class Dashboard
+ * @brief  ласс дл€ отрисовки графической приборной панели с помощью OpenCV.
+ */
 class Dashboard {
 public:
-    // √лавный метод: рисует панель на левой половине кадра
+    /**
+     * @brief –исует всю приборную панель на левой половине кадра.
+     * @param[in,out] frame  адр OpenCV, на котором будет производитьс€ отрисовка.
+     * @param[in] data —труктура с текущими значени€ми телеметрии.
+     */
     void draw(cv::Mat& frame, const DashboardData& data);
 
 private:

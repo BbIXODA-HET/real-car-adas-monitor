@@ -1,0 +1,96 @@
+\doxysection{OBDParser Class Reference}
+\hypertarget{class_o_b_d_parser}{}\label{class_o_b_d_parser}\index{OBDParser@{OBDParser}}
+
+
+Отвечает за чтение и парсинг CSV файлов с данными телеметрии.  
+
+
+
+
+{\ttfamily \+\#include $<$obd\+\_\+parser.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_o_b_d_parser_a1d5673b9d423d22363352d1fb82b0dab}{load}} (const std::\+string \&filepath)
+\begin{DoxyCompactList}\small\item\em Загружает данные из CSV файла. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}} \doxymbox{\hyperlink{class_o_b_d_parser_a108ace9ceb1fe2dde22f3bd70b85bccd}{get\+Record}} (int index) const
+\begin{DoxyCompactList}\small\item\em Возвращает запись телеметрии по указанному индексу. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \doxymbox{\hyperlink{class_o_b_d_parser_aef1d8b9beef2b6f47f7358182252d428}{parse\+Label}} (const std::\+string \&label\+Str)
+\begin{DoxyCompactList}\small\item\em Конвертирует текстовую метку стиля вождения в число. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Отвечает за чтение и парсинг CSV файлов с данными телеметрии. 
+
+\label{doc-func-members}
+\Hypertarget{class_o_b_d_parser_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_o_b_d_parser_a108ace9ceb1fe2dde22f3bd70b85bccd}\index{OBDParser@{OBDParser}!getRecord@{getRecord}}
+\index{getRecord@{getRecord}!OBDParser@{OBDParser}}
+\doxysubsubsection{\texorpdfstring{getRecord()}{getRecord()}}
+{\footnotesize\ttfamily \label{class_o_b_d_parser_a108ace9ceb1fe2dde22f3bd70b85bccd} 
+\doxymbox{\hyperlink{struct_o_b_d_record}{OBDRecord}} OBDParser::\+get\+Record (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption}) const}
+
+
+
+Возвращает запись телеметрии по указанному индексу. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em index} & Индекс запрашиваемой записи. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Структура \doxylink{struct_o_b_d_record}{OBDRecord} с данными. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std::\+out\+\_\+of\+\_\+range} & Если индекс находится вне допустимого диапазона. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_o_b_d_parser_a1d5673b9d423d22363352d1fb82b0dab}\index{OBDParser@{OBDParser}!load@{load}}
+\index{load@{load}!OBDParser@{OBDParser}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_o_b_d_parser_a1d5673b9d423d22363352d1fb82b0dab} 
+int OBDParser::\+load (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{filepath}{}\end{DoxyParamCaption})}
+
+
+
+Загружает данные из CSV файла. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em filepath} & Путь к CSV файлу. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Количество успешно загруженных записей или -\/1 в случае ошибки. 
+\end{DoxyReturn}
+\Hypertarget{class_o_b_d_parser_aef1d8b9beef2b6f47f7358182252d428}\index{OBDParser@{OBDParser}!parseLabel@{parseLabel}}
+\index{parseLabel@{parseLabel}!OBDParser@{OBDParser}}
+\doxysubsubsection{\texorpdfstring{parseLabel()}{parseLabel()}}
+{\footnotesize\ttfamily \label{class_o_b_d_parser_aef1d8b9beef2b6f47f7358182252d428} 
+int OBDParser::\+parse\+Label (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{label\+Str}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Конвертирует текстовую метку стиля вождения в число. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em label\+Str} & Текстовая метка ("{}\+SLOW"{}, "{}\+NORMAL"{}, "{}\+AGGRESSIVE"{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Целое число (0, 1, 2) или -\/1, если метка неизвестна. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+src/\+obd\+\_\+parser.\+h\item 
+src/\+obd\+\_\+parser.\+cpp\end{DoxyCompactItemize}
