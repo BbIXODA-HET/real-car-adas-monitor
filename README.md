@@ -30,9 +30,9 @@ cmake --build . --config Release
 
 
 # Cкриншот работающей системы
-![Норма](output/screenshot_1.png)
-![Усталость](output/screenshot_2.png)
-![Отвлечение](output/screenshot_3.png)
+![Норма](screenshot_1.png)
+![Усталость](screenshot_2.png)
+![Отвлечение](screenshot_3.png)
 
 # Таблица результатов
 | Метрика | Значение |
